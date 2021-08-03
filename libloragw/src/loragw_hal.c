@@ -1098,8 +1098,9 @@ int lgw_start(void) {
             ts_addr = I2C_PORT_TEMP_SENSOR[i];
             err = i2c_linuxdev_open(I2C_DEVICE, ts_addr, &ts_fd);
             if (err != LGW_I2C_SUCCESS) {
-                printf("ERROR: failed to open I2C for temperature sensor on port 0x%02X\n", ts_addr);
-                return LGW_HAL_ERROR;
+                // printf("ERROR: failed to open I2C for temperature sensor on port 0x%02X\n", ts_addr);
+		 printf("IGNORING ERROR: failed to open I2C for temperature sensor on port 0x%02X due to hardware incompatibility.\n", ts_addr);
+                // return LGW_HAL_ERROR;
             }
 
             err = stts751_configure(ts_fd, ts_addr);
